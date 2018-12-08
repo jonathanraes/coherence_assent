@@ -22,11 +22,13 @@ defmodule CoherenceAssent.Controller do
     |> redirect(to: get_route(conn, :registration_path, :new))
   end
   def callback_response({:error, :missing_login_field}, conn, provider, user_params, _params) do
+    IO.puts "missing_login_field error callback"
     conn
     |> put_session("coherence_assent_params", user_params)
     |> redirect(to: get_route(conn, :coherence_assent_registration_path, :add_login_field, [provider]))
   end
   def callback_response({:error, %Ecto.Changeset{} = changeset}, conn, _provider, user_params, params) do
+    IO.puts "general error callback"
     login_field = Coherence.Config.login_field
 
     case changeset do
