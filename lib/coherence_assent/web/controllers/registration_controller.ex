@@ -26,7 +26,6 @@ defmodule CoherenceAssent.RegistrationController do
   end
 
   def create(conn, %{"provider" => provider, "registration" => registration} = params) do
-    IO.inspect params
     conn
     |> check_session
     |> case do
