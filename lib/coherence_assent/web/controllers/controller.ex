@@ -32,8 +32,10 @@ defmodule CoherenceAssent.Controller do
     case changeset do
       %{errors: [{^login_field, _}]} = changeset ->
         conn
-        |> put_session("coherence_assent_params", user_params)
-        |> respond_with(conn, :registration_create_error, %{changeset: changeset})
+        # |> put_session("coherence_assent_params", user_params)
+        # |> respond_with(conn, :registration_create_error, %{changeset: changeset})
+        |> put_flash(:error, CoherenceAssent.Messages.backend().could_not_sign_in())
+        |> redirect(to: Coherence.Config.logged_out_url(conn))
       %{errors: _errors} ->
         conn
         |> put_flash(:error, CoherenceAssent.Messages.backend().could_not_sign_in())
