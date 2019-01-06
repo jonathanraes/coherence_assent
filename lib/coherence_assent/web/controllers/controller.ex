@@ -14,6 +14,7 @@ defmodule CoherenceAssent.Controller do
   def callback_response({:ok, _type, user}, conn, _provider, _user_params, params) do
     conn
     |> create_user_session(user)
+    |> put_flash(:info, CoherenceAssent.Messages.backend().signed_in_successfully())
     |> redirect_to(:session_create, params)
   end
   def callback_response({:error, :bound_to_different_user}, conn, provider, _user_params, _params) do
@@ -33,7 +34,6 @@ defmodule CoherenceAssent.Controller do
       %{errors: [{^login_field, _}]} = changeset ->
         conn
         # |> put_session("coherence_assent_params", user_params)
-        # |> respond_with(conn, :registration_create_error, %{changeset: changeset})
         |> put_flash(:error, CoherenceAssent.Messages.backend().email_already_bound_to_other_user())
         |> redirect(to: Coherence.Config.logged_out_url(conn))
       %{errors: _errors} ->

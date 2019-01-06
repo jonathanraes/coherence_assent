@@ -14,6 +14,7 @@ defmodule CoherenceAssent.Messages do
   @callback identity_cannot_be_removed_missing_user_password()  :: binary
   @callback account_already_bound_to_other_user([{atom, any}])  :: binary
   @callback email_already_bound_to_other_user()  :: binary
+  @callback signed_in_successfully() :: binary
   @callback login_with_provider([{atom, any}])  :: binary
   @callback remove_provider_authentication([{atom, any}])  :: binary
   @callback authentication_has_been_removed([{atom, any}])  :: binary
