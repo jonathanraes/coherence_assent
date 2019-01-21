@@ -37,6 +37,7 @@ defmodule CoherenceAssent.Controller do
         |> put_flash(:error, CoherenceAssent.Messages.backend().email_already_bound_to_other_user())
         |> redirect(to: Coherence.Config.logged_out_url(conn))
       %{errors: _errors} ->
+        IO.inspect changeset
         conn
         |> put_flash(:error, CoherenceAssent.Messages.backend().could_not_sign_in())
         |> redirect(to: Coherence.Config.logged_out_url(conn))

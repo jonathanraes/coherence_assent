@@ -44,7 +44,7 @@ defmodule CoherenceAssent.Callback do
         registration_params = registration_params
                               |> Map.merge(%{"user_identity_provider" => provider,
                                              "user_identity_uid" => uid})
-        :registration
+        :registration_oauth
         |> Helpers.changeset(user_schema, user_schema.__struct__, registration_params)
         |> Schemas.create
         |> case do
