@@ -18,11 +18,13 @@ defmodule CoherenceAssent.Controller do
     |> redirect_to(:session_create, params)
   end
   def callback_response({:error, :bound_to_different_user}, conn, provider, _user_params, _params) do
+    IO.puts "bound_to_different_user"
     conn
     |> put_flash(:error, CoherenceAssent.Messages.backend().account_already_bound_to_other_user(%{provider: humanize(provider)}))
     |> redirect(to: get_route(conn, :registration_path, :new))
   end
   def callback_response({:error, :missing_login_field}, conn, provider, user_params, _params) do
+    IO.puts "missing_login_field"
     conn
     |> put_session("coherence_assent_params", user_params)
     |> redirect(to: get_route(conn, :coherence_assent_registration_path, :add_login_field, [provider]))
