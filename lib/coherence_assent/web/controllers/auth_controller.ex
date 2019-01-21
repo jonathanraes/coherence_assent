@@ -21,8 +21,6 @@ defmodule CoherenceAssent.AuthController do
   end
 
   def callback(conn, %{"provider" => provider} = params) do
-    IO.puts "callback"
-    IO.inspect params
     config = get_config!(provider)
     params = %{"redirect_uri" => redirect_uri(conn, provider)}
              |> Map.merge(params)
