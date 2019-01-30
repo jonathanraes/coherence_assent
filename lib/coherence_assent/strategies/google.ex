@@ -23,7 +23,7 @@ defmodule CoherenceAssent.Strategy.Google do
   defp set_config(config) do
     [
       site: "https://www.googleapis.com/plus/v1",
-      authorize_url: "https://accounts.google.com/o/oauth2/auth",
+      authorize_url: "https://accounts.google.com/o/oauth2/v2/auth",
       token_url: "https://accounts.google.com/o/oauth2/token",
       user_url: "/people/me/openIdConnect",
       authorization_params: [scope: "email profile"]
